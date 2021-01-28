@@ -1,0 +1,11 @@
+prebuild:
+  - echo prebuild stage
+  - echo extra step 1
+
+build:
+  - echo build stage
+  - echo extra step 2
+
+postbuild:
+  - echo postbuild stage
+  - echo extra step 3
