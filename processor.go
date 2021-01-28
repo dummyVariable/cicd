@@ -32,7 +32,11 @@ func build(statements []string) error {
 
 	for _, statement := range statements {
 		command := makeCommands(statement)
-		args := command[1:]
+		var args []string
+		if len(command) > 1 {
+			args = command[1:]
+		}
+
 		output := exec.Command(command[0], args...).Run()
 		fmt.Println(output)
 	}
