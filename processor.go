@@ -15,12 +15,12 @@ func processor(job Job) error {
 		return err
 	}
 
-	err = build(job.PreBuild)
+	err = build(job.Build)
 	if err != nil {
 		return err
 	}
 
-	err = build(job.PreBuild)
+	err = build(job.PostBuild)
 	if err != nil {
 		return err
 	}
@@ -37,8 +37,12 @@ func build(statements []string) error {
 			args = command[1:]
 		}
 
-		output := exec.Command(command[0], args...).Run()
-		fmt.Println(output)
+		output, err := exec.Command(command[0], args...).Output()
+		if err != nil {
+			return err
+		}
+
+		fmt.Println(string(output))
 	}
 
 	return nil
