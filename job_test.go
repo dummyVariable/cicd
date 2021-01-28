@@ -1,4 +1,4 @@
-package cicd
+package main
 
 import (
 	"io/ioutil"
